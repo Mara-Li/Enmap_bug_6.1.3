@@ -22,3 +22,5 @@ const key = database.get("server123", "language");
 //Results with latest typescript & enmap version:
 //TS2345: Argument of type "language" is not assignable to parameter of type
 // "length" | "toString" | "concat" | "slice" | "indexOf" | "lastIndexOf" | "includes" | "at" | "charAt" | "charCodeAt" | "localeCompare" | "match" | "replace" | "search" | "split" | ... 36 more ... | undefined
+
+console.log(key);
