@@ -3,24 +3,27 @@ import Enmap from "enmap";
 interface MyServerData {
 	language: string;
 	welcomeMessage: string;
+	otherSettings?: {
+		moderator: string;
+		notificationsEnabled: boolean;
+	}
 }
 
-const database: Enmap<string, MyServerData> = new Enmap({
+const database: Enmap<MyServerData> = new Enmap({
 	name: "myServerData",
 });
 
 database.set("server123", {
 	language: "en",
 	welcomeMessage: "Welcome to the server!",
+	otherSettings: {
+		moderator: "adminUser",
+		notificationsEnabled: true,
+	}
 })
 
 database.set("server123", "fr", "language");
-//TS2345: Argument of type "language" is not assignable to parameter of type
-// "length" | "toString" | "concat" | "slice" | "indexOf" | "lastIndexOf" | "includes" | "at" | "charAt" | "charCodeAt" | "localeCompare" | "match" | "replace" | "search" | "split" | ... 36 more ... | undefined
-
 const key = database.get("server123", "language");
-//Results with latest typescript & enmap version:
-//TS2345: Argument of type "language" is not assignable to parameter of type
-// "length" | "toString" | "concat" | "slice" | "indexOf" | "lastIndexOf" | "includes" | "at" | "charAt" | "charCodeAt" | "localeCompare" | "match" | "replace" | "search" | "split" | ... 36 more ... | undefined
+const otherSettings = database.get("server123", "otherSettings.moderator");
 
-console.log(key);
+console.log(otherSettings);
